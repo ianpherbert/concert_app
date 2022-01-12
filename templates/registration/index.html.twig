@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('/styles/registration.css')}}">
+{% endblock %}
+
+{% block body %}
+	<section class="head">
+		<h2>Inscription</h2>
+	</section>
+	<div class="content" id="registry">
+
+		{% for message in app.flashes('err') %}
+			<div class="alert alert-danger">
+				{{message}}
+			</div>
+		{% endfor %}
+		{{form(form)}}
+
+
+		</div>
+		<div id="typeChoice">
+			<h3>Vous êtes ?</h3>
+			<div class="start" id="band">
+				<span>Groupe de musique</span>
+				<img src="{{asset('/graphics/band.gif')}}" alt="" class="dynamic">
+				<img src="{{asset('/graphics/band.png')}}" alt="" class="static">
+			</div>
+			<div class="start" id="venue">
+				<span>Salle de spectacle</span>
+				<img src="{{asset('/graphics/venue.gif')}}" alt="" class="dynamic">
+				<img src="{{asset('/graphics/venue.png')}}" alt="" class="static">
+			</div>
+			<input type="submit" name="submit" id="submit" class="btn btn-primary">
+		</div>
+	{% endblock %}
+
+	{% block javascripts %}
+		<script src="{{asset('/scripts/registration.js')}}"></script>
+
+	{% endblock %}

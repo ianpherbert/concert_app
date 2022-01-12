@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('/styles/home.css')}}">
+{% endblock %}
+{% block body %}
+	<section class="head">
+		<h1 class="display-1">Accueil</h1>
+	</section>
+	<section class="content row">
+		<aside class="col" id="welcomeCard">
+			<p class="lead">Bienvenue</p>
+			<p>Logoden biniou degemer mat, an penn ar bed, forn sae. Gwenodenn brank daeroù foenn pemzek dor, eget sell chase penn. Kregiñ Baden chaseal gwiskamant livet fentigelloù, brank ankouna’haat piv re. Ziskouez daou hennezh n’eus Liger amann, roll milin c’hoazh d’a. Oas etre  lur gouez prad speredekañ, tro karrezek leziregezh elgez. Eme ruilhañ Plouezoc’h warnoc'h anezhañ dra, noazh poull fentigelloù hepken. Ha hadañ Sant-Tegoneg ni purgator kreskiñ, nijal micherour bouzar aketus. Voulouz sizhun prenañ louet, sioul flourañ ennañ gaoued, goap gounit. Garmiñ kempenn degouezhout c’hoar terriñ forn, veur Skrigneg park martolod. Diriaou gentel Gwengamp koll, kof vrozh elgez gontell, sevel skorn.</p>
+			<img src="{{asset('/graphics/home_photo.jpg')}}" alt="Photo d'un concert">
+		</aside>
+		<div class="col">
+			<h3 class="display-5 section_title">Ce Soir</h3>
+			{% if concerts|length > 0 %}
+				<ul id="todaysConcerts">
+					{% for concert in concerts %}
+						<li>
+							<div class="home_concert_photo">
+								{% if concert.venue_photo != null %}
+									<img src="{{"/uploads/" ~ concert.venue_photo}}" alt="{{concert.venue}}">
+								{% else %}
+									<img src="{{asset('/graphics/venue_placeholder.jpg')}}" alt="{{concert.venue}}">
+								{% endif %}
+							</div>
+							<div class="home_concert_info">
+								<a href="{{path('concerts.concert',{'id': concert.id})}}">{{concert.name}}</a>
+								<a href="{{path('venue.info',{'id':concert.venue_id})}}">@
+									{{concert.venue}}</a>
+								<p>{{concert.date|format_datetime(pattern="h a",locale='fr')}}</p>
+							</div>
+						</li>
+
+
+					{% endfor %}
+				</ul>
+			{% else %}
+				<p>Il n'y a pas de concert ce soir!</p>
+				<img src="{{asset('/graphics/nothing_here.gif')}}" alt="Sad Face">
+			{% endif %}
+
+		</div>
+
+	</section>
+{% endblock %}

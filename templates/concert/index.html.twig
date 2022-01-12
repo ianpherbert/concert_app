@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Concerts
+	{{dateString}}
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('/styles/concert.css')}}">
+{% endblock %}
+{% block body %}
+
+
+	<section class="head">
+		<h2 class="display-2">Concerts pour
+			{{dateString}}</h2>
+	</section>
+
+	<section id="concertList" class="content">
+		<div id="navigation">
+			<a href="{{path('concerts.index.full',{'year': prev.y, 'month': prev.m})}}">{{"<" ~ prev.string}}</a>
+			<a href="{{path('concerts.index.full',{'year': next.y, 'month': next.m})}}">{{next.string ~ ">"}}</a>
+		</div>
+		<table class="table table-bordered" id="allConcerts">
+			<thead>
+				<th>Nom</th>
+				<th>Date</th>
+				<th>Endroit</th>
+			</thead>
+			<tbody>
+				{% if concerts|length ==0 %}
+					<tr>
+						<th colspan="3">Il n'y a pas de concerts ce mois ci</th>
+					</tr>
+					<tr>
+						<th colspan="3">
+							<a href="{{path('concerts.index')}}">Voir le mois actuel</a>
+						</th>
+					</tr>
+				{% else %}
+					{% for concert in concerts %}
+						<tr>
+							<th>
+								<a href="{{path('concerts.concert',{'id': concert.id})}}">{{concert.name}}</a>
+							</th>
+							<td>
+								{{concert.date|format_datetime('full', 'none', locale='fr')}}
+							</td>
+							<td>
+								<a href="{{path('venue.info',{'id':concert.venue_id})}}">{{concert.venue}}</a>
+							</td>
+						</tr>
+					{% endfor %}
+				{% endif %}
+			</tbody>
+		</table>
+	</section>
+
+{% endblock %}

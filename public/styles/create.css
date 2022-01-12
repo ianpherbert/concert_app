@@ -1,0 +1,35 @@
+#navButtons {
+  width: 75%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+#form {
+  padding: 10% 20% 20% 20%;
+  text-align: center;
+}
+
+#form label {
+  font-size: large;
+  margin-bottom: 50px;
+}
+
+#form_submit {
+  height: 100px;
+  width: 100%;
+}
+
+#info {
+  list-style: none;
+  padding-top: 50px;
+}
+
+#info > li {
+  display: flex;
+  justify-content: space-between;
+}
+
+#info > li > p {
+  width: 50%;
+}

@@ -1,0 +1,84 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	{{concert.name}}
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('/styles/concert.css')}}">
+{% endblock %}
+{% block body %}
+
+
+	<div class="head">
+		<h2 class="display-3" id="concert_name">{{concert.name}}</h2>
+		<div id="details">
+			<p>{{concert.date|format_datetime('full', 'none', locale='fr')}}
+				{{concert.date|format_datetime(pattern="h a",locale='fr')}}</p>
+			<p></p>
+
+
+		</div>
+	</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col">
+				<h3 class="display-5 section_title">Lieu</h3>
+				<div id="venue">
+					<div id="venue_info">
+						<a href="{{path('venue.info',{'id':concert.venue_id})}}" class="display-6">{{concert.venue_name}}</a>
+						<p>{{concert.venue_address}}</p>
+						<p>{{concert.venue_city ~", "~ concert.venue_region ~ " " ~ concert.venue_postal_code}}</p>
+						<p>{{concert.venue_country}}</p>
+					</div>
+					<div id="venue_photo">
+						{% if concert.venue_photo == null %}
+							<img src="{{asset('graphics/venue_placeholder.jpg')}}" alt="{{concert.venue_name}}">
+						{% else %}
+							<img src="{{"/uploads/" ~ concert.venue_photo}}" alt="{{ concert.venue_name}}">
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div>
+					<h3 class="display-5 section_title">Programmation</h3>
+					{% if bands|length > 0 %}
+						<ul id="bill">
+							{% for band in bands %}
+								<li>
+									<div class="band_photo">
+										{% if band.photo == null %}
+											<img src="{{asset('graphics/band_placeholder.jpg')}}" alt="{{band.name}}">
+										{% else %}
+											<img src="{{"/uploads/" ~ band.photo}}" alt="{{ band.name}}">
+										{% endif %}
+									</div>
+									<a href="{{path('band',{'id':band.id})}}" class="display-6">
+										{{band.name}}
+									</a>
+
+								</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container" id="moreConcerts">
+		<h4 class="display-5 section_title">Plus de concerts chez
+			{{concert.venue_name}}</h4>
+		{% if upcoming|length > 0 %}
+			{% for concert in upcoming %}
+				<ul>
+					<li>
+						<a class="display-6" href="{{path('concerts.concert',{'id': concert.id})}}">{{concert.name}}</a>
+						<p>{{concert.date|format_datetime('full', 'none', locale='fr')}}</p>
+					</li>
+				</ul>
+			{% endfor %}
+		{% else %}
+			<p>Il n'y a pas de concerts à venir pour cette salle de spectacle...</p>
+		{% endif %}
+	</div>
+
+{% endblock %}

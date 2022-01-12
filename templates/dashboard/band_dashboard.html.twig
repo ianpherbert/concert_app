@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+
+	<link rel="stylesheet" href="{{asset('/styles/dashboard.css')}}">
+{% endblock %}
+
+{% block title %}Tableau de Bord
+{% endblock %}
+
+{% block body %}
+	<div class="title">
+		<h2>Tableau de Bord</h2>
+		<h3>{{data.name}}</h3>
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-info">
+				{{message}}
+			</div>
+		{% endfor %}
+	</div>
+
+	<div class="container" id="info">
+		<div class="row">
+			<div class='col'>
+				<h3>Info du Groupe</h3>
+				<table class="table table-bordered table-striped">
+					<tbody>
+						<tr>
+							<th>Ville</th>
+							<td>{{data.city}}</td>
+							<td rowspan="3">
+								<div class="dashboard_photo">
+									<div class="photo">
+
+										{% if data.photo == null %}
+											<img src="{{asset('graphics/band_placeholder.jpg')}}" alt="{{data.name}}">
+										{% else %}
+											<img src="{{"/uploads/" ~ data.photo}}" alt="{{ data.name}}">
+										{% endif %}
+
+									</div>
+									<div class="context">
+										<a href="{{path('dashboard.changePhoto')}}"></a>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</td>
+			</tr>
+			<tr>
+				<th>Région</th>
+				<td>{{data.region}}</td>
+			</tr>
+			<tr>
+				<th>Pays</th>
+				<td>{{data.country}}</td>
+			</tr>
+			<tr>
+				<th>Votre compte est</th>
+				<td>
+					{% if data.isPrivate %}
+						Privé
+					{% else %}
+						Publique
+					{% endif %}
+				</td>
+				<td>
+					{% if data.isPrivate %}
+						<a href="{{path('dashboard.privacy',{'action': 0})}}" class="btn btn-warning">Rendre ce groupe publique</a>
+					{% else %}
+						<a href="{{path('dashboard.privacy',{'action': 1})}}" class="btn btn-warning">Rendre ce groupe privé</a>
+					{% endif %}
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th colspan="3">
+					<a href="{{path('dashboard.updateInfo')}}" class="btn btn-info">Changer info du groupe</a>
+				</th>
+			</tr>
+		</tfoot>
+	</table>
+	{% for message in app.flashes('privacy') %}
+		<div class="alert alert-info">
+			{{message}}
+		</div>
+	{% endfor %}
+</div>
+<div class="col">
+	<div id="concerts" class="container">
+		<h2>Concerts</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Concert</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% if concerts|length == 0 %}
+					<tr>
+						<td colspan="3">Vous n'avez pas de concerts à venir</td>
+					</tr>
+				{% else %}
+					{% for concert in concerts %}
+						<tr>
+							<td>
+								<a href="{{path('concerts.concert',{'id':concert.id})}}">{{concert.name}}</a>
+							</td>
+							<td>
+								{{concert.date |date('d/m/y h:m')}}
+							</td>
+						</tr>
+					{% endfor %}
+				{% endif %}
+
+			</tbody>
+			<tfoot>
+				<th colspan='3'>
+					<a href="{{path('dashboard.concertList')}}" class="btn btn-primary">Voir tous les concerts</a>
+				</th>
+			</tfoot>
+		</table>
+	</div>
+</div></div></div>{% endblock %}

@@ -1,0 +1,57 @@
+.title {
+  width: 100%;
+  text-align: center;
+}
+
+.btn {
+  width: 100%;
+}
+
+.dashboard_photo {
+  position: relative;
+  width: 200px;
+  text-align: center;
+  height: 200px;
+  overflow: hidden;
+}
+
+.dashboard_photo img {
+  width: 100%;
+}
+
+.dashboard_photo > div {
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.dashboard_photo .context {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.096);
+}
+.context a {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.context a::after {
+  content: "Changer Photo";
+  color: aliceblue;
+  text-decoration: none;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.dashboard_photo:hover .context {
+  display: flex;
+}
+
+.dashboard_photo:hover .photo {
+  opacity: 0.5;
+}

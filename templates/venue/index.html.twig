@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('/styles/venue.css')}}">
+{% endblock %}
+
+{% block title %}
+	{{venue.name}}
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="head">s
+		<h2 class="display-3" id="venue_name">{{venue.name}}</h2>
+	</div>
+</div>
+<div class="container" id="body">
+	<div class="row">
+		<div class="col" id="venue_photo">
+			<div>
+				{% if venue.photo == null %}
+					<img src="{{asset('graphics/placeholder.jpg')}}" alt="{{venue.name}}">
+				{% else %}
+					<img src="{{"/uploads/" ~ venue.photo}}" alt="{{ venue.name}}">
+				{% endif %}
+			</div>
+		</div>
+		<div class="col" id="venue_info">
+			<div>
+				<p class="display-5">{{venue.name}}</p>
+				<p class="display-6">{{venue.address }}</p>
+				<p class="display-6">{{venue.city ~ ", " ~ venue.region ~ ", " ~ venue.country}}</p>
+				<div class="container">
+					<p class="display-6">Capacité:
+						{{venue.capacity}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" id="concerts">
+		<div>
+			<h3 class="display-4">Concerts à venir</h3>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Concert</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% if concerts|length > 0 %}
+						{% for concert in concerts %}
+							<tr>
+								<th>
+									<a href="{{path('concerts.concert',{'id':concert.id})}}">{{concert.name}}</a>
+								</th>
+								<td>{{concert.date|format_datetime('full', 'none', locale='fr')}}</td>
+							</tr>
+						</tbody>
+					{% endfor %}
+				{% else %}
+					<tr>
+						<th>Cette salle de concert n'a pas de concerts à venir</th>
+					</tr>
+				{% endif %}
+			</tbody>
+		</table>
+	</div>
+</div></div>{% endblock %}

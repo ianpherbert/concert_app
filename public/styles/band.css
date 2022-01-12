@@ -1,0 +1,13 @@
+#band_photo > div {
+  height: 30vw;
+  width: 30vw;
+  overflow: hidden;
+}
+#band_photo > div > img {
+  width: 100%;
+}
+
+#concerts {
+  margin-top: 50px;
+  background-color: var(--color-five);
+}

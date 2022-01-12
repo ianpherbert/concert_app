@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('/styles/band.css')}}">
+{% endblock %}
+
+{% block title %}
+	{{band.name}}
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="head">
+		<h2 class="display-3" id="band_name">{{band.name}}</h2>
+	</div>
+</div>
+<div class="container content">
+	{% if private %}
+		<div class="alert alert-warning" role="alert">
+			<p>Ce profil est privé</p>
+		</div>
+
+	{% else %}
+		<div class="row">
+			<div class="col" id="band_photo">
+				<div>
+
+					{% if band.photo == null %}
+						<img src="{{asset('graphics/band_placeholder.jpg')}}" alt="{{band.name}}">
+					{% else %}
+						<img src="{{"/uploads/" ~ band.photo}}" alt="{{ band.name}}">
+					{% endif %}
+				</div>
+			</div>
+			<div class="col" id="band_info">
+				<div>
+					<p class="display-5">{{band.name}}</p>
+					<p class="display-6">{{band.city ~ ", " ~ band.region ~ ", " ~ band.country}}</p>
+					<p id="bio">
+						{{band.bio}}
+					</p>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+	<div class="row" id="concerts">
+		<div>
+			<h3 class="display-4">Concerts à venir</h3>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Concert</th>
+						<th>Lieu</th>
+						<th>Ville</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% if concerts|length > 0 %}
+						{% for concert in concerts %}
+							<tr>
+								<th>
+									<a href="{{path('concerts.concert',{'id':concert.id})}}">{{concert.name}}</a>
+								</th>
+								<td>{{concert.venue}}</td>
+								<td>{{concert.venue_city ~ ", "  ~ concert.venue_country}}</td>
+								<td>{{concert.date|format_datetime('full', 'none', locale='fr')}}</td>
+							</tr>
+						</tbody>
+					{% endfor %}
+				{% else %}
+					<tr>
+						<th colspan="4">Cette groupe de concert n'a pas de concerts à venir</th>
+					</tr>
+				{% endif %}
+			</tbody>
+		</table>
+	</div>
+</div></div>{% endblock %}

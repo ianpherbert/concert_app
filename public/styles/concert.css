@@ -1,0 +1,82 @@
+#concert_name {
+  overflow: hidden;
+}
+
+#bill li {
+  list-style: none;
+  display: flex;
+  padding: 20px 0px 20px 0px;
+  align-items: center;
+}
+
+#bill li > a {
+  margin-left: 20px;
+  overflow: hidden;
+}
+
+#allConcerts tr {
+  height: 50px;
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  -o-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
+}
+
+#allConcerts tr:hover {
+  background-color: var(--color-one);
+  color: aliceblue;
+}
+
+.band_photo {
+  height: 100px;
+  width: 100px;
+  overflow: hidden;
+}
+
+.band_photo img {
+  width: 100%;
+}
+
+#venue {
+  display: flex;
+}
+
+#venue_info {
+  margin-left: 40px;
+}
+
+#venue_photo {
+  height: 300px;
+  width: 300px;
+  overflow: hidden;
+}
+
+#venue_photo img {
+  width: 100%;
+}
+
+#moreConcerts {
+  padding-top: 20px;
+  border: solid;
+  padding-bottom: 40px;
+}
+
+#moreConcerts ul {
+  margin-top: 40px;
+  list-style: none;
+}
+
+#moreConcerts li {
+  list-style: none;
+}
+
+#moreConcerts li > p {
+  margin-left: 40px;
+}
+
+#navigation {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  text-transform: capitalize;
+}

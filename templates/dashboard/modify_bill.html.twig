@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('/styles/bill.css')}}">
+{% endblock %}
+
+{% block body %}
+	<section class="head">
+		<h2>Modifier les groupes pour:
+			<br/>
+			{{concert.name}}</h2>
+	</section>
+	<div class="content">
+		{% for message in app.flashes('add') %}
+			<div class="alert alert-info">
+				{{message}}
+			</div>
+		{% endfor %}
+		<h3>Groupe(s) déjà present(s) sur ce concert:</h3>
+		<ul id="bill">
+			{% for band in bands %}
+				<li>
+					<span>{{band.name}}</span>
+					<a href="{{path('dashboard.deleteBill',{'billId':band.bill})}}">supprimer</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="container">
+		<div class="input-group mb-3" x>
+			<input type="text" class="form-control" placeholder="Rechercher un groupe" id="search">
+			<div class="input-group-append">
+				<button class="btn btn-outline-secondary" type="button" id="search_button">Rechercher</button>
+			</div>
+		</div>
+		{{form(form)}}
+		</div>
+
+		<div class="container">
+			<a href="{{path('dashboard.home')}}" class="btn btn-success">Terminé</a>
+		</div>
+
+	{% endblock %}
+
+	{% block javascripts %}
+		<script src="{{asset('/scripts/bill.js')}}"></script>
+
+	{% endblock %}

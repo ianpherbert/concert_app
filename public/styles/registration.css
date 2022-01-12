@@ -1,0 +1,95 @@
+#typeChoice {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  height: 450px;
+}
+
+#typeChoice h3 {
+  width: 100%;
+  text-align: center;
+}
+
+#typeChoice > div {
+  border-style: double;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.start {
+  height: 200px;
+  width: 300px;
+}
+
+.inactive {
+  height: 200px;
+  width: 300px;
+  animation: die 0.75s ease-in-out;
+}
+
+.active {
+  width: 400px;
+  height: 250px;
+  animation: pick 0.75s;
+}
+
+@keyframes pick {
+  0% {
+    height: 200px;
+    width: 300px;
+  }
+  100% {
+    height: 250px;
+    width: 400px;
+  }
+}
+
+@keyframes die {
+  0% {
+    height: 200px;
+    width: 400px;
+  }
+  100% {
+    height: 200px;
+    width: 300px;
+  }
+}
+
+/* 
+.form-select {
+  display: none;
+} */
+
+#typeChoice img {
+  width: 100%;
+  transition: ease-in-out 1s;
+}
+
+.inactive .dynamic {
+  display: none;
+}
+
+.inactive:hover .dynamic {
+  display: inline;
+}
+
+.start .dynamic {
+  display: none;
+}
+
+.start:hover .dynamic {
+  display: inline;
+}
+
+.active .dynamic {
+  display: inline;
+}
+
+.btn {
+  width: 100%;
+  height: 50px;
+  animation: psychMorph 5s infinite;
+}

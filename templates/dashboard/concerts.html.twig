@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<section class="head">
+		<h2 class="display-1">Vos Concerts</h2>
+	</section>
+
+	<section class="content">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for concert in concerts %}
+					<tr>
+						<th>
+							<a href="{{path('concerts.concert',{'id':concert.id})}}">{{concert.name}}</a>
+						</th>
+						<td>{{concert.date |date('d-m-Y')}}</td>
+						{% if 'venue' in app.user.roles %}
+							<td>
+								<a href="{{path('dashboard.concert',{'action' : concert.id})}}" class="btn btn-info">Modifier Info</a>
+							</td>
+							<td>
+								<a href="{{path('dashboard.modifyBill',{'concertId' : concert.id})}}" class="btn btn-warning">Modifier Groupes</a>
+							</td>
+						{% endif %}
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</section>
+
+
+{% endblock %}

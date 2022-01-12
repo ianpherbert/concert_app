@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('/styles/create.css')}}">
+{% endblock %}
+
+{% block body %}
+	<div>
+		<ul id="info" hidden></ul>
+	</div>
+	<div hidden id="formWrapper">
+		{{form(form)}}
+		</div>
+		<div id="navButtons">
+			<button class="btn btn-warning" id="prev" disabled>Retour</button>
+			<button class="btn btn-primary" id="next">Continuer</button>
+		</div>
+
+
+	{% endblock %}
+
+	{% block javascripts %}
+		<script src="{{asset('/scripts/create.js')}}"></script>
+
+	{% endblock %}

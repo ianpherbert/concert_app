@@ -1,0 +1,126 @@
+:root {
+  --color-one: #093d68;
+  --color-two: #f6d797;
+  --color-three: #e2a457;
+  --color-four: #381114;
+  --color-five: #fcfcfc;
+
+  --main-font: "Merriweather", serif;
+  --secondary-font: "Roboto Condensed", sans-serif;
+}
+
+header {
+  padding: 0px 5vw 0px 5vw;
+  background-color: none;
+  position: relative;
+}
+
+#headerPhoto {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  place-items: top;
+}
+
+#headerPhoto h1 {
+  position: absolute;
+  color: var(--color-five);
+  top: 25%;
+  left: 10%;
+}
+
+#headerPhoto img {
+  width: 100%;
+  height: auto;
+}
+
+#navBar {
+  font-family: var(--secondary-font);
+  background: linear-gradient(var(--color-one) 70%, var(--color-three) 100%);
+  background-color: var(--color-one);
+  color: var(--color-five);
+  transition: ease-in-out 5s;
+}
+
+#navBar a:hover {
+  font-weight: bold;
+  color: var(--color-two);
+  text-shadow: 10px 5px 40px var(--color-three);
+}
+
+body {
+  font-family: var(--main-font);
+  background-color: var(--color-four);
+  background: linear-gradient(
+    234deg,
+    var(--color-one) 0%,
+    var(--color-four) 20%,
+    var(--color-four) 80%,
+    var(--color-one) 100%
+  );
+}
+
+.section_title {
+  width: 100%;
+  text-align: center;
+  text-decoration: underline;
+  padding-bottom: 30px;
+}
+
+.head {
+  height: 200px;
+  width: 100%;
+  margin: 50px auto 0px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-three);
+  background: linear-gradient(
+    234deg,
+    var(--color-one) 0%,
+    var(--color-three) 30%
+  );
+  color: var(--color-one);
+  text-shadow: 1px 1px 2px white;
+  flex-wrap: wrap;
+  text-transform: capitalize;
+}
+
+.content {
+  margin: 30px;
+  padding-top: 50px;
+}
+
+main {
+  width: 90%;
+  margin: auto;
+  background-color: var(--color-two);
+  background: radial-gradient(
+    circle,
+    var(--color-five) 90%,
+    var(--color-one) 95%
+  );
+  padding-bottom: 100px;
+  margin-bottom: 50px;
+}
+
+#details {
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+}
+
+#pageFoot {
+  width: 100%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  color: #fcfcfc;
+  text-align: center;
+  margin: auto;
+}
+
+#pageFoot div {
+  width: 45%;
+  margin: 50px;
+}
