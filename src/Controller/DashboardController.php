@@ -7,12 +7,13 @@ use App\Entity\Band;
 use App\Entity\Bill;
 use App\Entity\Concert;
 use App\Form\ConcertType;
+use App\Security\CurrentUser;
 use App\Services\FileUploader;
 use App\Repository\BandRepository;
 use App\Repository\BillRepository;
 use App\Repository\VenueRepository;
+
 use App\Repository\ConcertRepository;
-use CurrentUser;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;

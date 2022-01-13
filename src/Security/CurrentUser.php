@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Security;
+
 use App\Repository\BandRepository;
 use App\Repository\VenueRepository;
 
